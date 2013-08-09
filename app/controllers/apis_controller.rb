@@ -82,10 +82,15 @@ class ApisController < ApplicationController
     puts "PARSED"
     puts parsed_notification
 
-    puts parsed_notification["Message"].to_s
-    parsed_message =  JSON.parse(parsed_notification["Message"].to_s)
+    if parsed_notification["Type"].to_s == "SubscriptionConfirmation"
+      puts "[recieve_sns] Confirming Subbscription"
+      puts Net::HTTP.get(URI.parse(parsed_notification["SubscribeURL"]))
+    elsif parsed_notification["Type"].to_s == "Notification"
+      parsed_message =  JSON.parse(parsed_notification["Message"].to_s)
 
-    puts "plop :"+parsed_message.inspect
+     puts "plop :"+parsed_message.inspect
+    end
+
 
 
     respond_to do |format|
