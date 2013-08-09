@@ -1,4 +1,6 @@
 class ApisController < ApplicationController
+
+require 'net/http'
   # GET /apis
   # GET /apis.json
   def index
