@@ -75,7 +75,7 @@ class ApisController < ApplicationController
 
     parsed_notification = ActiveSupport::JSON.decode(request.body)
 
-    puts "plop :"+parsed_message.inspect
+    puts "plop :"+parsed_notification.inspect
 
 
     respond_to do |format|
